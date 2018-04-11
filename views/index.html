@@ -9,11 +9,45 @@
     <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.bootcss.com/notify/0.4.2/notify.min.js"></script>
     <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/jsoneditor/5.14.1/jsoneditor.min.js"></script>
+    <link href="https://cdn.bootcss.com/jsoneditor/5.14.1/jsoneditor.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <link href="https://cdn.bootcss.com/jquery-confirm/3.3.2/jquery-confirm.min.css" rel="stylesheet">
     <script>
         $(function(){
             $.notify.defaults({"globalPosition":"top center"});
+            var container = document.getElementById("configDiv");
+            var options = {};
+            var options = {
+            };
+            var editor = new JSONEditor(container, options);
+            // set json
+            var json = <%- JSON.stringify(config) %>;
+            editor.set(json);
+            $("#configSave").click(function(){
+                try{
+                    var json = editor.get(json);
+                    var jsonString = JSON.stringify(json);
+                    JSON.parse(jsonString);//for test
+                }catch(e){
+                    $.notify("json error"+e.message,"error");
+                    return;
+                }
+                $.confirm({ title: '你确定要修改配置文件吗？', content: '修改端口请重启!', buttons: { confirm: function () { 
+                    $.post("/configSave",{json:jsonString},function(d){
+                        if(d.f){
+                            // location.href = "/";
+                        }else{
+                            $.notify(d.m,"error");
+                        }
+                    },"json");
+                } } });
+            });
+
             $("#configButton").click(function(){
+                editor.expandAll();
                 $("#configDiv").toggle();
+                $("#configSave").toggle();
             });
             $("#evnSelect").change(function(){
                 var env = $(this).val();
@@ -25,7 +59,6 @@
                     }
                 },"json");
             });
-            
         });
     </script>
 </head>
@@ -36,12 +69,13 @@
           <%for(env in envList) {%>
           <option value="<%= env %>" <% if(env == currentEnv) { %> selected <% } %> ><%= env %></option>
           <%}%>
-        </select><button type="button" class="btn btn-info float-right" id="configButton" title="show or hide">config</button>
+        </select>
+        <button type="button" class="btn btn-success float-right" id="configSave" title="save config" style="display: none;margin: 0px 10px;">save</button>&nbsp;&nbsp;
+        <button type="button" class="btn btn-info float-right" id="configButton" title="show or hide">config</button>
     </div>
-    <div style="display: none;" id="configDiv">
-        <pre><%= JSON.stringify(config,null,4) %></pre>
-    </div>
+    
 </div>
+<div style="display: none;margin: 10px auto;" id="configDiv"></div>
 <div id="app" class="table-responsive">
     <table class="table table-striped .table-responsive">
       <thead>

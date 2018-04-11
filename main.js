@@ -4,6 +4,7 @@ var http = require("http");
 var express = require("express");
 var ejs = require('ejs');
 var app = express();
+var bodyParser = require("body-parser");
 var proxyList = [];
 function proxyRecord(host,ip){
     proxyList.unshift({host:host,ip:ip,time:new Date().format("yyyy-MM-dd hh:mm:ss")});
@@ -61,7 +62,10 @@ myProxy.start();
 console.log("proxy start at "+proxyPort);
 
 
-
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({
+    extended: true
+})); // for parsing application/x-www-form-urlencoded
 app.engine('html', ejs.renderFile);
 app.set("view engine", "html");
 app.get("/", function(req, res) {
@@ -81,6 +85,19 @@ app.get("/proxyList", function(req, res) {
         res.end('{"f":1,"m":"change error '+e.message+'"}'); 
     }
 });
+app.post("/configSave", function(req, res) {
+    try{
+        var json = req.body.json;
+        config = JSON.parse(json);
+        currentEnv = config['currentEnv'];
+        envList = config['envList'];
+        fs.writeFileSync('config.json',JSON.stringify(config,null,4));
+        var data = {"f":1,"m":"ok"};
+        res.end(JSON.stringify(data)); 
+    } catch (e) {
+        res.end('{"f":0,"m":"change error '+e.message+'"}'); 
+    }
+});
 app.get("/change",function(req,res){
     try{
         query = req.query;
@@ -93,7 +110,7 @@ app.get("/change",function(req,res){
         myProxy.change();
         res.end('{"f":1,"m":"change success '+currentEnv+'"}'); 
     } catch (e) {
-        res.end('{"f":1,"m":"change error '+e.message+'"}'); 
+        res.end('{"f":0,"m":"change error '+e.message+'"}'); 
     }
 })
 app.listen(httpPort);
