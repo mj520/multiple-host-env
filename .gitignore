@@ -1,0 +1,7 @@
+/.buildpath
+/.project
+/.settings/*
+/.history/*
+/.idea
+/.DS_Store
+/node_modules*

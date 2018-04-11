@@ -1,0 +1,31 @@
+{
+    "proxyPort": 9393,
+    "httpPort": 9394,
+    "currentEnv": "dev",
+    "envList": {
+        "online": {},
+        "dev": {
+            "xcx-admin.duomai.com ": "192.168.1.176",
+            "xcx-img.p1j2.com": "140.205.132.239",
+            "xcx-img.zmwxxcx.com ": "140.205.132.239",
+            "*.p1j2.com": "192.168.1.176",
+            "*.zmwxxcx.com": "192.168.1.176"
+        },
+        "local-api": {
+            "*.p1j2.com": "192.168.99.100",
+            "*.zmwxxcx.com": "192.168.99.100"
+        },
+        "local-web-and-api": {
+            "xcx.duomai.com": "127.0.0.1",
+            "*.p1j2.com": "192.168.99.100",
+            "*.zmwxxcx.com": "192.168.99.100"
+        },
+        "local-web-online-api": {
+            "xcx.duomai.com": "127.0.0.1",
+            "xcx-img.p1j2.com": "140.205.132.239",
+            "xcx-img.zmwxxcx.com ": "140.205.132.239",
+            "*.p1j2.com": "47.97.11.196",
+            "*.zmwxxcx.com": "47.97.11.196"
+        }
+    }
+}
