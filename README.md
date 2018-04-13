@@ -25,6 +25,11 @@ https://github.com/liyangready/multiple-host
 multiple-host 就是为了解决烦人的host问题而诞生的 , 它采用了 沙箱机制，在一个独立的浏览器进程中使用host。
 
 
+##multiple-host-env.exe
+仅支持默认http端口、方便修改环境
+自动运行代理脚本、关闭时同时关闭
+
+
 ## config.json 支持域名指向ip
 ```
 {

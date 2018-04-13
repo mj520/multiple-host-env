@@ -25,13 +25,16 @@ MiniProxy.prototype.start = function() {
     server.listen(this.port);
     port = this.port;
 }
-MiniProxy.prototype.change = function() {    
-    console.log("change start " + pipeList.length);
+MiniProxy.prototype.change = function(max = 0) {
     do {
         try {
-            var s = pipeList.shift();
-            s.unpipe();
-            s.end();
+            var s = null;
+            if(pipeList.length > max){
+                console.log("clear " + pipeList.length);
+                s = pipeList.shift();
+                s.unpipe();
+                s.end();
+            }            
         } catch (e) {
             //console.log("change error " + e.message);
         }

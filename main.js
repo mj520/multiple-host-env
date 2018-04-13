@@ -112,7 +112,11 @@ app.get("/change",function(req,res){
     } catch (e) {
         res.end('{"f":0,"m":"change error '+e.message+'"}'); 
     }
-})
+});
+//60 秒自动清理一次缓存 保留最近5000
+setInterval(function(){
+    myProxy.change(5000);
+},60000);
 app.listen(httpPort);
 console.log("http start in "+httpPort);
 
