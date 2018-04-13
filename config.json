@@ -1,7 +1,7 @@
 {
     "proxyPort": 9393,
     "httpPort": 9394,
-    "currentEnv": "dev",
+    "currentEnv": "online",
     "envList": {
         "online": {},
         "dev": {

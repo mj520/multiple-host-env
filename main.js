@@ -116,8 +116,11 @@ app.get("/change",function(req,res){
 app.listen(httpPort);
 console.log("http start in "+httpPort);
 
-var c = require('child_process');
-c.exec('start http://127.0.0.1:'+httpPort);
+var isOpen = process.argv[2] == 0?false:true;
+if(isOpen){
+    var c = require('child_process');
+    c.exec('start http://127.0.0.1:'+httpPort);
+}
 
 Date.prototype.format = function(fmt) { 
      var o = { 
