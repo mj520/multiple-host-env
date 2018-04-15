@@ -1,4 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<project ver="10" name="multiple-host-env" libEmbed="true" icon="..." ui="win" output="multiple-host-env.exe" CompanyName="mj520" FileDescription="multiple-host-env" LegalCopyright="Copyright (C) 作者 2018" ProductName="multiple-host-env" InternalName="multiple-host-env" FileVersion="1.0.0.14" ProductVersion="1.0.0.14" publishDir="/" dstrip="false">
+<project ver="10" name="multiple-host-env" libEmbed="true" icon="favicon.ico" ui="win" output="multiple-host-env.exe" CompanyName="mj520" FileDescription="multiple-host-env" LegalCopyright="Copyright (C) 作者 2018" ProductName="multiple-host-env" InternalName="multiple-host-env" FileVersion="1.0.0.18" ProductVersion="1.0.0.18" publishDir="/" dstrip="false">
 	<file name="main.aardio" path="main.aardio" comment="main.aardio"/>
 </project>

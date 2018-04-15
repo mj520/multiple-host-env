@@ -1,14 +1,29 @@
 import win.ui;
 /*DSG{{*/
-var winform = win.form(text="Web Form";right=640;bottom=480)
+var winform = win.form(text="multiple-host-env";right=640;bottom=480)
 winform.add()
 /*}}*/
 
 import web.form;
 import process;
+import winex;
+..ShowWindow = ::User32.api("ShowWindow","int(int hwnd,int nCmdShow)")
+
+hideWindowById = function(pid){
+    for hwnd,title,theadId,processId in winex.each(  ) {        
+        if( pid == processId ){
+            if( win.isVisible(hwnd) ) {
+    	    	ShowWindow(hwnd,0x0);
+            }
+        }
+    }
+}
+
 var  si = process.STARTUPINFO();
 si.title = "proxy service";
 node = process("node","main.js 0",si);
+
+
 var wb = web.form( winform 
 	,//可输入_UIFLAG_ 前缀的常量自定义外观
 	,//可输入_DLCTL_ 前缀的常量以控制下载行为
@@ -16,8 +31,7 @@ var wb = web.form( winform
 	);
  
 //打开目标网站
-wb.go("http://127.0.0.1:9394/")
-winform.text = "multiple-host-env";
+wb.go("http://127.0.0.1:9394/");
 winform.show(); //显示窗体
 wb.wait(""); //等待指定网址
 
@@ -27,6 +41,17 @@ function closeNode(){
 winform.onClose = function(hwnd,message,wParam,lParam){
 	self.closeNode();
 }
+winform.onOk = function(hwnd){
+    console.log(hwnd);
+    ShowWindow(hwnd,0x5);
+}
+winform.onCancel = function(hwnd){
+    console.log(hwnd);
+    ShowWindow(hwnd,0x0);
+}
+
+hideWindowById(node.id);
+	    
 //启动消息循环
 win.loopMessage();
 return winform,wb;
