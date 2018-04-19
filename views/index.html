@@ -116,7 +116,7 @@ var vm = new Vue({
     init:function(){
         _this = this;
         setInterval(function(){
-            $.get("/proxyList",function(d){
+            $.get("/proxyList"+'?_='+ new Date().getTime(),function(d){
                 if(d.f){
                     _this.proxyList = d.d;
                 }else{
