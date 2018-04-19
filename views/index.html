@@ -47,7 +47,7 @@
                     confirm: function () { 
                     $.post("/configSave",{json:jsonString},function(d){
                         if(d.f){
-                            // location.href = "/";
+                            $.notify(d.m,"success");
                         }else{
                             $.notify(d.m,"error");
                         }
