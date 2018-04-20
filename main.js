@@ -91,6 +91,7 @@ app.post("/configSave", function(req, res) {
         config = JSON.parse(json);
         currentEnv = config['currentEnv'];
         envList = config['envList'];
+        hostMap = envList[currentEnv];
         fs.writeFileSync('config.json',JSON.stringify(config,null,4));
         var data = {"f":1,"m":"ok"};
         res.end(JSON.stringify(data)); 

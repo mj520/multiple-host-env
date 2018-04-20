@@ -1,7 +1,7 @@
 {
     "proxyPort": 9393,
     "httpPort": 9394,
-    "currentEnv": "online",
+    "currentEnv": "local-web-and-api",
     "envList": {
         "online": {},
         "dev": {
@@ -16,6 +16,8 @@
             "*.zmwxxcx.com": "192.168.99.100"
         },
         "local-web-and-api": {
+            "common.zmwxxcx.com": "47.97.11.196",
+            "common.p1j2.com": "47.97.11.196",
             "xcx-admin.duomai.com": "192.168.99.100",
             "xcx.duomai.com": "127.0.0.1",
             "*.p1j2.com": "192.168.99.100",
