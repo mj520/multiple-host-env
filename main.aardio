@@ -1,6 +1,6 @@
 import win.ui;
 /*DSG{{*/
-var winform = win.form(text="multiple-host-env";right=640;bottom=480)
+var winform = win.form(text="multiple-host-env";right=640;bottom=640)
 winform.add()
 /*}}*/
 

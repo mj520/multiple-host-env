@@ -5,11 +5,11 @@
     "envList": {
         "online": {},
         "dev": {
-            "xcx-img.p1j2.com": "140.205.132.239",
+            "xcx-album-img.p1j2.com": "140.205.132.239",
             "*.p1j2.com": "192.168.1.176",
             "*.zmwxxcx.com": "192.168.1.176",
             "xcx-admin.duomai.com": "192.168.1.176",
-            "xcx-img.zmwxxcx.com": "140.205.132.239"
+            "xcx-album-img.zmwxxcx.com": "140.205.132.239"
         },
         "local-api": {
             "*.p1j2.com": "192.168.99.100",
@@ -19,14 +19,16 @@
             "xcx-admin.duomai.com": "192.168.99.100",
             "xcx.duomai.com": "127.0.0.1",
             "*.p1j2.com": "192.168.99.100",
-            "*.zmwxxcx.com": "192.168.99.100"
+            "*.zmwxxcx.com": "192.168.99.100",
+            "xcx-album-img.p1j2.com": "140.205.132.239",
+            "xcx-album-img.zmwxxcx.com": "140.205.132.239"
         },
         "local-web-online-api": {
             "xcx.duomai.com": "127.0.0.1",
-            "xcx-img.p1j2.com": "140.205.132.239",
+            "xcx-album-img.p1j2.com": "140.205.132.239",
             "*.p1j2.com": "47.97.11.196",
             "*.zmwxxcx.com": "47.97.11.196",
-            "xcx-img.zmwxxcx.com": "140.205.132.239"
+            "xcx-album-img.zmwxxcx.com": "140.205.132.239"
         }
     }
 }
