@@ -107,22 +107,26 @@
 </div>
  
 <script>
+function getProxyList(_this){
+    $.get("/proxyList"+'?_='+ new Date().getTime(),function(d){
+        if(d.f){
+            _this.proxyList = d.d;
+        }else{
+            $.notify(d.m,"error");
+        }
+    },"json");
+}
 var vm = new Vue({
   el: '#app',
   data: {
-    proxyList:<%- JSON.stringify(proxyList) %>
+    proxyList:[]
   },
   methods: {
     init:function(){
         _this = this;
+        getProxyList(_this);
         setInterval(function(){
-            $.get("/proxyList"+'?_='+ new Date().getTime(),function(d){
-                if(d.f){
-                    _this.proxyList = d.d;
-                }else{
-                    $.notify(d.m,"error");
-                }
-            },"json");
+            getProxyList(_this);
         },3000);
     }
   }

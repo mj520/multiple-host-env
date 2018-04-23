@@ -5,11 +5,16 @@ var express = require("express");
 var ejs = require('ejs');
 var app = express();
 var bodyParser = require("body-parser");
-var proxyList = [];
+var proxyList = {};
 function proxyRecord(host,ip){
-    proxyList.unshift({host:host,ip:ip,time:new Date().format("yyyy-MM-dd hh:mm:ss")});
-    if(proxyList.length > 10){
-        proxyList.pop();
+    proxyList[host] = {host:host,ip:ip,time:new Date().format("yyyy-MM-dd hh:mm:ss")};    
+    keys = Object.keys(proxyList);
+    if(keys.length > 10){
+        //排序
+        keys = Object.keys(proxyList).sort(function(a, b) {
+            return proxyList[b].time > proxyList[a].time;
+        });
+        delete(proxyList[keys.pop()]);
     }
 }
 var json = fs.readFileSync('config.json', 'utf8');
@@ -71,7 +76,6 @@ app.set("view engine", "html");
 app.get("/", function(req, res) {
     res.render("index", {
         title: "proxy for http & https change host",
-        proxyList: proxyList,
         currentEnv: currentEnv,
         envList: envList,
         config:config
@@ -79,7 +83,15 @@ app.get("/", function(req, res) {
 });
 app.get("/proxyList", function(req, res) {
     try{
-        var data = {"f":1,"m":"ok","d":proxyList};
+        var d = [];
+        //排序后输出
+        var keys = Object.keys(proxyList).sort(function(a, b) {
+            return proxyList[b].time > proxyList[a].time;
+        });
+        for(i in keys){
+            d.push(proxyList[keys[i]]);
+        }
+        var data = {"f":1,"m":"ok","d":d};
         res.end(JSON.stringify(data)); 
     } catch (e) {
         res.end('{"f":1,"m":"change error '+e.message+'"}'); 
