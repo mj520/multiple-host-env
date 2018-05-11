@@ -111,10 +111,9 @@ app.post("/configSave", function(req, res) {
         res.end('{"f":0,"m":"change error '+e.message+'"}'); 
     }
 });
-app.get("/change",function(req,res){
+app.post("/change",function(req,res){
     try{
-        query = req.query;
-        currentEnv = query.env;
+        currentEnv = req.body.env;
         if(envList[currentEnv] != null){
             hostMap = envList[currentEnv];
             config['currentEnv'] = currentEnv;

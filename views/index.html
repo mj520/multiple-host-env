@@ -62,7 +62,7 @@
             });
             $("#evnSelect").change(function(){
                 var env = $(this).val();
-                $.get("/change?env="+env,function(d){
+                $.post("/change",{"env":env},function(d){
                     if(d.f){
                         $.notify(d.m,"success");
                     }else{

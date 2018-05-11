@@ -11,6 +11,7 @@ multiple-host-env change host,fix multiple-host https keep-alive,use web page ch
 $ git clone https://github.com/mj520/multiple-host-env.git
 $ npm install
 $ node main.js
+$ node 要求 6.x 太新可能有问题
 
 change system proxy to 127.0.0.1:9393
 change env http 127.0.0.1:9394
@@ -25,9 +26,9 @@ https://github.com/liyangready/multiple-host
 multiple-host 就是为了解决烦人的host问题而诞生的 , 它采用了 沙箱机制，在一个独立的浏览器进程中使用host。
 
 
-##multiple-host-env.exe
+## multiple-host-env.exe
 仅支持默认http端口、方便修改环境
-自动运行代理脚本、关闭时同时关闭
+自动运行代理脚本、关闭时同时关闭、需要ie11 支持h5、运行时注意是否有权限修改config 或 用管理员身份运行
 
 
 ## config.json 支持域名指向ip
