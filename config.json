@@ -1,7 +1,7 @@
 {
     "proxyPort": 9393,
     "httpPort": 9394,
-    "currentEnv": "online",
+    "currentEnv": "local-web-api-common",
     "envList": {
         "online": {},
         "dev": {
@@ -31,6 +31,17 @@
             "*.p1j2.com": "47.97.11.196",
             "*.zmwxxcx.com": "47.97.11.196",
             "xcx-album-img.zmwxxcx.com": "140.205.132.239"
+        },
+        "local-web-api-common": {
+            "xcx-admin.duomai.com": "192.168.99.100",
+            "xcx.duomai.com": "127.0.0.1",
+            "*.p1j2.com": "192.168.99.100",
+            "*.zmwxxcx.com": "192.168.99.100",
+            "xcx-album-img.p1j2.com": "140.205.132.239",
+            "xcx-album-img.zmwxxcx.com": "140.205.132.239"
+        },
+        "test": {
+            "test.duomai.com": "127.0.0.1"
         }
     }
 }

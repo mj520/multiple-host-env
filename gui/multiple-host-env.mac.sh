@@ -1,0 +1,1 @@
+GOOS=darwin GOARCH=amd64 go build -ldflags="-H windowsgui" -o multiple-host-env-gui.app multiple-host-env.go

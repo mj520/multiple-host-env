@@ -1,0 +1,1 @@
+go build -ldflags="-H windowsgui" -o multiple-host-env-gui.exe multiple-host-env.go

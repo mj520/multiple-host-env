@@ -158,3 +158,6 @@ Date.prototype.format = function(fmt) {
      }
     return fmt; 
 }
+setTimeout(function(){
+    fs.writeFileSync('multiple-host-env.pid',process.pid);
+},3000)
