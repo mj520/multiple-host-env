@@ -1,7 +1,7 @@
 {
     "proxyPort": 9393,
     "httpPort": 9394,
-    "currentEnv": "local-web-api-common",
+    "currentEnv": "test",
     "envList": {
         "online": {},
         "dev": {
@@ -41,7 +41,8 @@
             "xcx-album-img.zmwxxcx.com": "140.205.132.239"
         },
         "test": {
-            "test.duomai.com": "127.0.0.1"
+            "img.haimi.com": "122.246.3.203",
+            "*.haimi.com": "112.124.193.159"
         }
     }
 }
