@@ -36,7 +36,14 @@ func main() {
 			}
 		}
 	}()
-	// Open wikipedia in a 800x600 resizable window
-	webview.Open("multiple-host-env",
-		"http://127.0.0.1:9394", 800, 600, true)
+	w := webview.New(webview.Settings{
+		Width:     800,
+		Height:    600,
+		Title:     "multiple-host-env",
+		Resizable: true,
+		URL:       "http://127.0.0.1:9394",
+	})
+	w.SetColor(255, 255, 255, 255)
+	defer node.Process.Kill();w.Exit()
+	w.Run()
 }
