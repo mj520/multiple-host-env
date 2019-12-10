@@ -11,7 +11,7 @@ multiple-host-env change host,fix multiple-host https keep-alive,use web page ch
 $ git clone https://github.com/mj520/multiple-host-env.git
 $ npm install
 $ node main.js
-# node 要求 6.x or 8.x 暂不支持10.x 或使用docker
+# node 要求 6.x 或使用docker
 $ docker run --rm --net=host mj520/multiple-host-env
 
 change system proxy to 127.0.0.1:9393
