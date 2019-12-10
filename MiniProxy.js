@@ -1,8 +1,9 @@
 var http = require("http");
 var net = require("net");
 var url = require("url");
-var port ;
+var port;
 var pipeList = [];
+var mpConsole = require("debug")("mproxy");
 
 function MiniProxy(options) {
     this.port = options.port || 9393;
@@ -34,15 +35,15 @@ MiniProxy.prototype.change = function(max = 0) {
                 s = pipeList.shift();
                 s.unpipe();
                 s.end();
-            }            
+            }
         } catch (e) {
             //console.log("change error " + e.message);
         }
-    } while (s);    
+    } while (s);
 }
 MiniProxy.prototype.requestHandler = function(req, res) {
     try {
-        
+
         var self = this; // this -> server
         var path = req.headers.path || url.parse(req.url).path;
         var requestOptions = {
@@ -68,13 +69,13 @@ MiniProxy.prototype.requestHandler = function(req, res) {
         requestRemote(requestOptions, req, res, self);
 
     } catch (e) {
-        console.log("requestHandlerError" + e.message);
+        mpConsole("requestHandlerError" + e.message);
     }
-    
+
     function requestRemote(requestOptions, req, res, proxy) {
         var remoteRequest = http.request(requestOptions, function(remoteResponse) {
             remoteResponse.headers['proxy-agent'] = 'Easy Proxy 1.0';
-            remoteResponse.headers['Connection'] = 'close';
+
             // write out headers to handle redirects
             res.writeHead(remoteResponse.statusCode, '', remoteResponse.headers);
 
@@ -82,7 +83,8 @@ MiniProxy.prototype.requestHandler = function(req, res) {
             proxy.emit("beforeResponse", remoteResponse);
             remoteResponse.pipe(res);
             // Res could not write, but it could close connection
-            res.pipe(remoteResponse);
+            // https://github.com/liyangready/mini-proxy/issues/2
+            // res.pipe(remoteResponse);
             pipeList.push(remoteResponse);
             pipeList.push(res);
         });
@@ -102,7 +104,6 @@ MiniProxy.prototype.requestHandler = function(req, res) {
         res.on('close', function() {
             remoteRequest.abort();
         });
-        
     }
 
 }
@@ -119,13 +120,13 @@ MiniProxy.prototype.connectHandler = function(req, socket, head) {
         connectRemote(requestOptions, socket);
 
         function ontargeterror(e) {
-            console.log(req.url + " Tunnel error: " + e);
+            mpConsole(req.url + " Tunnel error: " + e);
             _synReply(socket, 502, "Tunnel Error", {}, function() {
                 try {
                     socket.end();
                 }
                 catch(e) {
-                    console.log('end error' + e.message);
+                    mpConsole('end error' + e.message);
                 }
 
             });
@@ -140,7 +141,7 @@ MiniProxy.prototype.connectHandler = function(req, socket, head) {
                     },
                     function(error) {
                         if (error) {
-                            console.log("syn error", error.message);
+                            mpConsole("syn error", error.message);
                             tunnel.end();
                             socket.end();
                             return;
@@ -151,16 +152,21 @@ MiniProxy.prototype.connectHandler = function(req, socket, head) {
                         pipeList.push(tunnel);
                     }
                 );
-                
-            });
 
+            });
+            socket.on('error', function(e) {
+                mpConsole('socket error:', e);
+            });
             tunnel.setNoDelay(true);
-            tunnel.on('error', ontargeterror);   
+
+            tunnel.on('error', ontargeterror);
         }
     } catch (e) {
-        console.log("connectHandler error: " + e.message);
+        mpConsole("connectHandler error: " + e.message);
     }
+
 }
+
 function _synReply(socket, code, reason, headers, cb) {
     try {
         var statusLine = 'HTTP/1.1 ' + code + ' ' + reason + '\r\n';

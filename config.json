@@ -41,6 +41,7 @@
             "xcx-album-img.zmwxxcx.com": "140.205.132.239"
         },
         "test": {
+            "newcps-test.duomai.com": "192.168.99.100",
             "youxiangtui-test.duomai.com": "127.0.0.1",
             "*.woofgame.com": "47.254.74.42",
             "img.haimi.com": "122.246.3.203",
