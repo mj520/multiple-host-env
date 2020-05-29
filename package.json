@@ -4,8 +4,9 @@
   "description": "multiple-host-env use mini-proxy and multiple-host change host,fix multiple-host https keep-alive,use web page change",
   "main": "main.js",
   "dependencies": {
-    "ejs": "^2.5.8",
     "body-parser": "^1.18.2",
+    "debug": "^4.1.1",
+    "ejs": "^2.5.8",
     "express": "^4.16.3"
   },
   "devDependencies": {},

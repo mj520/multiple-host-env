@@ -12,16 +12,16 @@
             "xcx-album-img.zmwxxcx.com": "140.205.132.239"
         },
         "local-api": {
-            "*.p1j2.com": "192.168.99.100",
-            "*.zmwxxcx.com": "192.168.99.100"
+            "*.p1j2.com": "127.0.0.1",
+            "*.zmwxxcx.com": "127.0.0.1"
         },
         "local-web-and-api": {
             "common.zmwxxcx.com": "47.97.11.196",
             "common.p1j2.com": "47.97.11.196",
-            "xcx-admin.duomai.com": "192.168.99.100",
+            "xcx-admin.duomai.com": "127.0.0.1",
             "xcx.duomai.com": "127.0.0.1",
-            "*.p1j2.com": "192.168.99.100",
-            "*.zmwxxcx.com": "192.168.99.100",
+            "*.p1j2.com": "127.0.0.1",
+            "*.zmwxxcx.com": "127.0.0.1",
             "xcx-album-img.p1j2.com": "140.205.132.239",
             "xcx-album-img.zmwxxcx.com": "140.205.132.239"
         },
@@ -33,18 +33,21 @@
             "xcx-album-img.zmwxxcx.com": "140.205.132.239"
         },
         "local-web-api-common": {
-            "xcx-admin.duomai.com": "192.168.99.100",
+            "xcx-admin.duomai.com": "127.0.0.1",
             "xcx.duomai.com": "127.0.0.1",
-            "*.p1j2.com": "192.168.99.100",
-            "*.zmwxxcx.com": "192.168.99.100",
+            "*.p1j2.com": "127.0.0.1",
+            "*.zmwxxcx.com": "127.0.0.1",
             "xcx-album-img.p1j2.com": "140.205.132.239",
             "xcx-album-img.zmwxxcx.com": "140.205.132.239"
         },
         "test": {
-            "newcps-test.duomai.com": "192.168.99.100",
+            "newcps-test.duomai.com": "127.0.0.1",
+            "newcps.duomai.com": "127.0.0.1",
             "youxiangtui-test.duomai.com": "127.0.0.1",
             "*.woofgame.com": "47.254.74.42",
             "img.haimi.com": "122.246.3.203",
+            "platform.duomai.com": "47.111.223.53",
+            "haomaiapi.duomai.com": "127.0.0.1",
             "*.haimi.com": "112.124.193.159"
         }
     }
