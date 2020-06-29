@@ -1,3 +1,5 @@
+//go:generate goversioninfo -icon=../favicon.ico -manifest=.manifest -64
+
 package main
 
 import (
