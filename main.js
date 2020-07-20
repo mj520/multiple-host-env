@@ -66,7 +66,7 @@ var myProxy = new MiniProxy({
 myProxy.start();
 console.log("proxy start at "+proxyPort);
 
-
+app.use(express.static('.'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({
     extended: true
