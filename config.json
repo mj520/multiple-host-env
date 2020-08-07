@@ -48,9 +48,11 @@
             "*.woofgame.com": "47.254.74.42",
             "img.haimi.com": "122.246.3.203",
             "platform.duomai.com": "47.111.223.53",
-            "haomai.duomai.com": "120.55.41.36",
-            "haomai*.duomai.com": "127.0.0.1",
             "*.haimi.com": "112.124.193.159"
+        },
+        "haomai": {
+            "haomai.duomai.com": "120.55.41.36",
+            "haomaitest.duomai.com": "127.0.0.1"
         }
     }
 }

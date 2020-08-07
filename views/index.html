@@ -11,8 +11,8 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.16/vue.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/jsoneditor/9.0.3/jsoneditor.min.js"></script>
     <link href="https://cdn.bootcdn.net/ajax/libs/jsoneditor/9.0.3/jsoneditor.min.css" rel="stylesheet">
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-    <link href="https://cdn.bootcdn.net/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css" rel="stylesheet">
     <script>
         $(function(){
             $.notify.defaults({"globalPosition":"top center"});
@@ -40,20 +40,25 @@
                     $.notify("json error"+e.message,"error");
                     return;
                 }
-                $.confirm({ title: '你确定要修改配置文件吗？', content: '修改端口请重启!', buttons: { 
-                    cancel:function(){},
-                    confirm: function () { 
-                    $.post("/configSave",{json:jsonString},function(d){
-                        if(d.f){
-                            $.notify(d.m,"success");
-                        }else{
-                            $.notify(d.m,"error");
-                        }
-                    },"json");
+                $.confirm({ 
+                    title: '修改配置文件吗？', 
+                    content: '修改端口请重启!',
+                    useBootstrap:true,
+                    buttons: { 
+                    "取消":function(){},
+                    "确定": function () { 
+                        $.post("/configSave",{json:jsonString},function(d){
+                            if(d.f){
+                                configButtonFun()
+                                $.notify(d.m,"success");
+                            }else{
+                                $.notify(d.m,"error");
+                            }
+                        },"json");
                 } } });
             });
 
-            $("#configButton").click(function(){
+            $("#configButton").click(configButtonFun = function(){
                 editor.expandAll();
                 $("#configDiv").toggle();
                 $("#configSave").toggle();
