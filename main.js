@@ -159,5 +159,5 @@ Date.prototype.format = function(fmt) {
     return fmt; 
 }
 setTimeout(function(){
-    fs.writeFileSync('multiple-host-env.pid',process.pid);
+    fs.writeFileSync('multiple-host-env.pid',parseInt(process.pid, 10).toString());
 },3000)

@@ -1,5 +1,5 @@
-FROM node:10-alpine
-MAINTAINER node-10-alpine
+FROM node:14-alpine
+MAINTAINER node-14-alpine
 ENV CONFIGOR_ENV=development
 ADD . /build
 WORKDIR /build
